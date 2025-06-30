@@ -114,7 +114,7 @@ export default function Home() {
                     <motion.span
                         className="text-violet-400"
                     >
-                        <span className="drop-shadow-[0_0_8px_rgba(139,69,255,0.8)]">Rye</span> Client
+                        <span className="drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span> Client
                     </motion.span>
                 </div>
                 <div className="hidden md:flex space-x-6 lg:space-x-8">
@@ -197,7 +197,7 @@ export default function Home() {
                     >
                         Dominate the game<br/>
                         with <span
-                        className="text-violet-400 drop-shadow-[0_0_10px_rgba(139,69,255,0.8)]">Rye</span>{" "}
+                        className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.5)]">Rye</span>{" "}
                         <span
                             className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent">Client</span>.
                     </motion.h1>
@@ -210,7 +210,7 @@ export default function Home() {
                     >
                         A premium-yet free-Minecraft utility mod built for the best experience possible.
                         <span
-                            className="text-violet-400 drop-shadow-[0_0_8px_rgba(139,69,255,0.8)]"> Rye</span> currently
+                            className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]"> Rye</span> currently
                         supports Fabric for Minecraft 1.21.6, providing a smooth and intuitive user experience.
                     </motion.p>
 
@@ -272,7 +272,7 @@ export default function Home() {
                         className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
                     >
                         Why choose <span
-                        className="text-violet-400 drop-shadow-[0_0_8px_rgba(139,69,255,0.8)]">Rye</span>?
+                        className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span>?
                     </motion.h2>
 
                     <motion.p
@@ -322,7 +322,7 @@ export default function Home() {
                                 <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
                                 <p className="text-neutral-400">
                                     <span
-                                        className="text-violet-400 drop-shadow-[0_0_8px_rgba(139,69,255,0.8)]">Rye</span>
+                                        className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span>
                                     {feature.description}
                                 </p>
                             </motion.div>
@@ -358,7 +358,7 @@ export default function Home() {
                         className="text-xl text-neutral-300 mb-8 max-w-2xl mx-auto"
                     >
                         Download <span
-                        className="text-violet-400 drop-shadow-[0_0_8px_rgba(139,69,255,0.8)]">Rye Client</span> now and
+                        className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye Client</span> now and
                         experience Minecraft like never before. Compatible with the latest versions.
                     </motion.p>
 
@@ -418,7 +418,7 @@ export default function Home() {
                         >
                             <div className="flex items-center space-x-2 mb-4">
                                 <h3 className="text-xl lg:text-2xl font-bold text-violet-400">
-                                    <span className="drop-shadow-[0_0_8px_rgba(139,69,255,0.8)]">Rye</span> Client
+                                    <span className="drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span> Client
                                 </h3>
                             </div>
                             <p className="text-neutral-400">The ultimate Minecraft utility client for enhanced
@@ -504,7 +504,7 @@ export default function Home() {
                         className="border-t border-neutral-800 mt-8 pt-8 text-center text-neutral-400"
                     >
                         <p>&copy; {new Date().getFullYear()} <span
-                            className="text-violet-400 drop-shadow-[0_0_8px_rgba(139,69,255,0.8)]">Rye Client</span>.
+                            className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye Client</span>.
                             Not affiliated with Mojang Studios or Microsoft.</p>
                     </motion.div>
                 </div>
