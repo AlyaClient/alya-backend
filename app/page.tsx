@@ -193,11 +193,11 @@ export default function Home() {
                         initial={{opacity: 0, y: 30}}
                         animate={{opacity: 1, y: 0}}
                         transition={{duration: 0.8, ease: "easeOut"}}
-                        className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 leading-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+                        className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 leading-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                     >
                         Dominate the game<br/>
                         with <span
-                        className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.5)]">Rye</span>{" "}
+                        className="text-violet-400">Rye</span>{" "}
                         <span
                             className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent">Client</span>.
                     </motion.h1>
@@ -272,7 +272,7 @@ export default function Home() {
                         className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
                     >
                         Why choose <span
-                        className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span>?
+                        className="text-violet-400">Rye</span>?
                     </motion.h2>
 
                     <motion.p
