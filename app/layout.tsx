@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rye Client",
+  title: "Home | Rye Client",
   description: "Rye Client Homepage",
 };
 
