@@ -245,7 +245,7 @@ export default function Home() {
                             transition={{duration: 0.8, delay: 0.6}}
                             className="text-sm text-neutral-400 mt-6 text-center lg:text-left"
                         >
-                            Latest Release: {latestRelease.name || getFormattedVersion()} •
+                            Latest Release: {getVersionText() || getFormattedVersion()} •
                             <a href={latestRelease.html_url} target="_blank" rel="noopener noreferrer"
                                className="text-violet-400 hover:text-violet-300 ml-1">
                                 View on GitHub
