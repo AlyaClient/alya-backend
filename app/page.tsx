@@ -183,92 +183,94 @@ export default function Home() {
                     className="absolute bottom-10 left-10 w-64 h-64 lg:w-96 lg:h-96 bg-violet-500/15 rounded-full blur-3xl"
                 ></motion.div>
 
-                <motion.div
-                    initial={{opacity: 0}}
-                    animate={{opacity: 1}}
-                    transition={{duration: 1, staggerChildren: 0.3}}
-                    className="w-full lg:w-1/2 max-w-2xl relative z-10 text-center lg:text-left lg:pr-8"
-                >
-                    <motion.h1
-                        initial={{opacity: 0, y: 30}}
-                        animate={{opacity: 1, y: 0}}
-                        transition={{duration: 0.8, ease: "easeOut"}}
-                        className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 leading-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-                    >
-                        Dominate the game<br/>
-                        with <span
-                        className="text-violet-400">Rye</span>{" "}
-                        <span
-                            className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent">Client</span>.
-                    </motion.h1>
-
-                    <motion.p
-                        initial={{opacity: 0, y: 30}}
-                        animate={{opacity: 1, y: 0}}
-                        transition={{duration: 0.8, ease: "easeOut", delay: 0.2}}
-                        className="text-lg md:text-md lg:text-md text-neutral-300 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-                    >
-                        A premium-yet free-Minecraft utility mod built for the best possible experience.
-                        <span
-                            className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]"> Rye</span> currently
-                        supports Fabric for Minecraft 1.21.6, providing a smooth and intuitive user experience.
-                    </motion.p>
-
+                <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center w-full relative z-10">
                     <motion.div
-                        initial={{opacity: 0, y: 30}}
-                        animate={{opacity: 1, y: 0}}
-                        transition={{duration: 0.8, ease: "easeOut", delay: 0.4}}
-                        className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        transition={{duration: 1, staggerChildren: 0.3}}
+                        className="w-full lg:w-1/2 max-w-2xl text-center lg:text-left lg:pr-8"
                     >
-                        <motion.button
-                            onClick={handleDownload}
-                            whileHover={{background: "#dac1ed"}}
-                            disabled={loading}
-                            className="bg-white px-6 py-2 text-black rounded-full font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                        <motion.h1
+                            initial={{opacity: 0, y: 30}}
+                            animate={{opacity: 1, y: 0}}
+                            transition={{duration: 0.8, ease: "easeOut"}}
+                            className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 leading-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                         >
-                            {loading ? 'Loading...' : 'Download'}
-                        </motion.button>
+                            Dominate the game<br/>
+                            with <span
+                            className="text-violet-400">Rye</span>{" "}
+                            <span
+                                className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent">Client</span>.
+                        </motion.h1>
 
-                        <motion.button
-                            onClick={handleLearnMore}
-                            whileHover={{borderColor: "#8b45ff", color: "#8b45ff"}}
-                            className="border-2 border-neutral-600 text-neutral-300 px-6 py-2 rounded-full font-medium text-sm hover:bg-neutral-800/50 transition-all duration-300"
+                        <motion.p
+                            initial={{opacity: 0, y: 30}}
+                            animate={{opacity: 1, y: 0}}
+                            transition={{duration: 0.8, ease: "easeOut", delay: 0.2}}
+                            className="text-lg md:text-md lg:text-md text-neutral-300 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
                         >
-                            Learn more
-                        </motion.button>
+                            A premium-yet free-Minecraft utility mod built for the best possible experience.
+                            <span
+                                className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]"> Rye</span> currently
+                            supports Fabric for Minecraft 1.21.6, providing a smooth and intuitive user experience.
+                        </motion.p>
+
+                        <motion.div
+                            initial={{opacity: 0, y: 30}}
+                            animate={{opacity: 1, y: 0}}
+                            transition={{duration: 0.8, ease: "easeOut", delay: 0.4}}
+                            className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
+                        >
+                            <motion.button
+                                onClick={handleDownload}
+                                whileHover={{background: "#dac1ed"}}
+                                disabled={loading}
+                                className="bg-white px-6 py-2 text-black rounded-full font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {loading ? 'Loading...' : 'Download'}
+                            </motion.button>
+
+                            <motion.button
+                                onClick={handleLearnMore}
+                                whileHover={{borderColor: "#8b45ff", color: "#8b45ff"}}
+                                className="border-2 border-neutral-600 text-neutral-300 px-6 py-2 rounded-full font-medium text-sm hover:bg-neutral-800/50 transition-all duration-300"
+                            >
+                                Learn more
+                            </motion.button>
+                        </motion.div>
+
+                        {latestRelease && !loading && (
+                            <motion.p
+                                initial={{opacity: 0}}
+                                animate={{opacity: 1}}
+                                transition={{duration: 0.8, delay: 0.6}}
+                                className="text-sm text-neutral-400 mt-6 text-center lg:text-left"
+                            >
+                                Latest Release: {getVersionText() || getFormattedVersion()} •
+                                <a href={latestRelease.html_url} target="_blank" rel="noopener noreferrer"
+                                   className="text-violet-400 hover:text-violet-300 ml-1">
+                                    View on GitHub
+                                </a>
+                            </motion.p>
+                        )}
                     </motion.div>
 
-                    {latestRelease && !loading && (
-                        <motion.p
-                            initial={{opacity: 0}}
-                            animate={{opacity: 1}}
-                            transition={{duration: 0.8, delay: 0.6}}
-                            className="text-sm text-neutral-400 mt-6 text-center lg:text-left"
-                        >
-                            Latest Release: {getVersionText() || getFormattedVersion()} •
-                            <a href={latestRelease.html_url} target="_blank" rel="noopener noreferrer"
-                               className="text-violet-400 hover:text-violet-300 ml-1">
-                                View on GitHub
-                            </a>
-                        </motion.p>
-                    )}
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, ease: "easeOut", delay: 0.8 }}
-                    className="hidden lg:flex w-full justify-center lg:justify-end items-center relative z-10 lg:pl-8"
-                >
-                    <motion.img
-                        src="/clickgui.png"
-                        alt="Click GUI"
-                        className="w-[64rem] h-auto"
-                        style={{
-                            transform: 'perspective(1200px) rotateY(-10deg) rotateX(15deg)'
-                        }}
-                    />
-                </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.8 }}
+                        className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-end items-center lg:pl-8"
+                    >
+                        <motion.img
+                            src="/clickgui.png"
+                            alt="Click GUI"
+                            className="w-[64rem] h-auto"
+                            style={{
+                                transform: 'perspective(1200px) rotateY(-10deg) rotateX(15deg)'
+                            }}
+                        />
+                    </motion.div>
+                </div>
             </section>
 
             <motion.section
