@@ -130,20 +130,23 @@ export default function Home() {
                     </motion.span>
                 </div>
                 <div className="hidden md:flex space-x-6 lg:space-x-8">
-                    {['Features', 'Download', 'Discord'].map((item, index) => (
-                        <motion.a
-                            key={item}
-                            initial={{opacity: 0, y: -10}}
-                            animate={{opacity: 1, y: 0}}
-                            transition={{duration: 0.5, delay: 0.3 + index * 0.1}}
-                            whileHover={{color: "#8b45ff"}}
-                            href={item === 'Discord' ? "https://discord.gg/J3XUnGaZjQ" : `#${item.toLowerCase()}`}
-                            target={item === 'Discord' ? "_blank" : undefined}
-                            className="text-neutral-300 hover:text-violet-400 transition-colors duration-300"
-                        >
-                            {item}
-                        </motion.a>
-                    ))}
+                    <AnimatePresence mode="wait">
+                        {['Features', 'Download', 'Discord'].map((item, index) => (
+                            <motion.a
+                                key={item}
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, delay: 0.3 + index * 0.1}}
+                                whileHover={{color: "#8b45ff"}}
+                                href={item === 'Discord' ? "https://discord.gg/J3XUnGaZjQ" : `#${item.toLowerCase()}`}
+                                target={item === 'Discord' ? "_blank" : undefined}
+                                className="text-neutral-300 hover:text-violet-400 transition-colors duration-300"
+                            >
+                                {item}
+                            </motion.a>
+                        ))}
+                    </AnimatePresence>
                 </div>
                 <AnimatePresence>
                     {showNavButton && (
