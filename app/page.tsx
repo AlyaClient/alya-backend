@@ -208,7 +208,7 @@ export default function Home() {
                         transition={{duration: 0.8, ease: "easeOut", delay: 0.2}}
                         className="text-lg md:text-md lg:text-md text-neutral-300 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
                     >
-                        A premium-yet free-Minecraft utility mod built for the best experience possible.
+                        A premium-yet free-Minecraft utility mod built for the best possible experience.
                         <span
                             className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]"> Rye</span> currently
                         supports Fabric for Minecraft 1.21.6, providing a smooth and intuitive user experience.
@@ -282,7 +282,7 @@ export default function Home() {
                         viewport={{once: true}}
                         className="text-xl text-neutral-400 mb-16 max-w-3xl mx-auto"
                     >
-                        With our lavish set of features, you&apos;ll never want to use another client.
+                        With our abundant set of features, you&apos;ll never want to use another client.
                     </motion.p>
 
                     <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
