@@ -129,25 +129,36 @@ export default function Home() {
                         <span className="drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span> Client
                     </motion.span>
                 </div>
-                <div className="hidden md:flex space-x-6 lg:space-x-8">
-                    <AnimatePresence mode="wait">
-                        {['Features', 'Download', 'Discord'].map((item, index) => (
-                            <motion.a
-                                key={item}
-                                initial={{opacity: 0, y: -10}}
-                                animate={{opacity: 1, y: 0}}
-                                exit={{opacity: 0, y: -10}}
-                                transition={{duration: 0.4, delay: 0.3 + index * 0.1}}
-                                whileHover={{color: "#8b45ff"}}
-                                href={item === 'Discord' ? "https://discord.gg/J3XUnGaZjQ" : `#${item.toLowerCase()}`}
-                                target={item === 'Discord' ? "_blank" : undefined}
-                                className="text-neutral-300 hover:text-violet-400 transition-colors duration-300"
-                            >
-                                {item}
-                            </motion.a>
-                        ))}
-                    </AnimatePresence>
+                
+                <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-6 lg:space-x-8">
+                    {['Features', 'Download', 'Discord'].map((item, index) => (
+                        <motion.a
+                            key={item}
+                            initial={{opacity: 0, y: -20, scale: 0.9}}
+                            animate={{opacity: 1, y: 0, scale: 1}}
+                            transition={{
+                                duration: 0.5,
+                                delay: 0.3 + index * 0.1,
+                                ease: "easeOut",
+                                type: "spring",
+                                stiffness: 200,
+                                damping: 15
+                            }}
+                            whileHover={{
+                                color: "#8b45ff",
+                                scale: 1.05,
+                                y: -2
+                            }}
+                            whileTap={{scale: 0.95}}
+                            href={item === 'Discord' ? "https://discord.gg/J3XUnGaZjQ" : `#${item.toLowerCase()}`}
+                            target={item === 'Discord' ? "_blank" : undefined}
+                            className="text-neutral-300 hover:text-violet-400 transition-colors duration-300"
+                        >
+                            {item}
+                        </motion.a>
+                    ))}
                 </div>
+                
                 <AnimatePresence>
                     {showNavButton && (
                         <motion.button
@@ -161,6 +172,9 @@ export default function Home() {
                         >
                             Download
                         </motion.button>
+                    )}
+                    {!showNavButton && (
+                        <div className="w-[100px] lg:w-[120px]"></div>
                     )}
                 </AnimatePresence>
             </motion.nav>
@@ -504,7 +518,7 @@ export default function Home() {
                                     {text: "Discord", href: "https://discord.gg/J3XUnGaZjQ", external: true},
                                     {
                                         text: "Bug Reports",
-                                        href: "https://github.com/RyeClient/rye-v1/issues",
+                                        href: "https://github.com/RyeClient/rry-v1/issues",
                                         external: true
                                     }
                                 ]
