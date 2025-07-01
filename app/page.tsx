@@ -86,8 +86,8 @@ export default function Home() {
 
     const handleLearnMore = () => {
         const featuresSection = document.getElementById('features');
-        if (featuresSection) {
-            featuresSection.scrollIntoView({ behavior: 'smooth' });
+        if(featuresSection) {
+            featuresSection.scrollIntoView({behavior: 'smooth'});
         }
     };
 
@@ -284,7 +284,6 @@ export default function Home() {
                     >
                         With our abundant set of features, you&apos;ll never want to use another client.
                     </motion.p>
-
                     <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                         {[
                             {
@@ -309,20 +308,28 @@ export default function Home() {
                                 whileInView={{opacity: 1, y: 0}}
                                 transition={{duration: 0.6, delay: 0.2 * index}}
                                 viewport={{once: true}}
-                                className="text-center p-6"
+                                whileHover={{scale: 1.05}}
+                                className="text-center p-6 rounded-lg border border-neutral-800/50 bg-neutral-900/20 backdrop-blur-sm shadow-lg hover:shadow-violet-500/20 transition-all duration-300 hover:border-violet-500/30"
+                                style={{
+                                    boxShadow: '0 0 20px rgba(139, 69, 255, 0.1), inset 0 0 20px rgba(139, 69, 255, 0.05)'
+                                }}
                             >
                                 <div
-                                    className="w-16 h-16 bg-violet-600 rounded-lg mx-auto mb-6 flex items-center justify-center">
+                                    className="w-16 h-16 bg-violet-600 rounded-lg mx-auto mb-6 flex items-center justify-center shadow-lg"
+                                    style={{
+                                        boxShadow: '0 0 25px rgba(139, 69, 255, 0.4)'
+                                    }}
+                                >
                                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor"
                                          viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                               d={feature.icon}/>
                                     </svg>
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
+                                <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">{feature.title}</h3>
                                 <p className="text-neutral-400">
                                     <span
-                                        className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span>
+                                        className="text-violet-400 drop-shadow-[0_0_8px_rgba(139,69,255,0.8)]">Rye</span>
                                     {feature.description}
                                 </p>
                             </motion.div>
