@@ -1,7 +1,7 @@
 "use client";
 
 import {useState, useEffect} from 'react';
-import {motion} from 'motion/react';
+import {motion, AnimatePresence} from 'motion/react';
 
 interface Release {
     tag_name: string;
@@ -17,6 +17,11 @@ export default function Home() {
     const [latestRelease, setLatestRelease] = useState<Release | null>(null);
     const [loading, setLoading] = useState(true);
     const [showNavButton, setShowNavButton] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         const fetchLatestRelease = async() => {
@@ -102,6 +107,10 @@ export default function Home() {
         return formatVersionNumber(latestRelease.tag_name);
     };
 
+    if (!mounted) {
+        return null;
+    }
+
     return (
         <div className="min-h-screen bg-black text-white w-full max-w-full">
             <motion.nav
@@ -112,44 +121,45 @@ export default function Home() {
             >
                 <div className="text-xl lg:text-2xl font-bold text-white flex items-center">
                     <motion.span
+                        initial={{opacity: 0, scale: 0.8}}
+                        animate={{opacity: 1, scale: 1}}
+                        transition={{duration: 0.6, delay: 0.2}}
                         className="text-violet-400"
                     >
                         <span className="drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span> Client
                     </motion.span>
                 </div>
                 <div className="hidden md:flex space-x-6 lg:space-x-8">
-                    <motion.a
-                        whileHover={{color: "#8b45ff"}}
-                        href="#features"
-                        className="text-neutral-300 hover:text-violet-400 transition-colors duration-300"
-                    >
-                        Features
-                    </motion.a>
-                    <motion.a
-                        whileHover={{color: "#8b45ff"}}
-                        href="#download"
-                        className="text-neutral-300 hover:text-violet-400 transition-colors duration-300"
-                    >
-                        Download
-                    </motion.a>
-                    <motion.a
-                        whileHover={{color: "#8b45ff"}}
-                        href="https://discord.gg/J3XUnGaZjQ"
-                        target="_blank"
-                        className="text-neutral-300 hover:text-violet-400 transition-colors duration-300"
-                    >
-                        Discord
-                    </motion.a>
+                    {['Features', 'Download', 'Discord'].map((item, index) => (
+                        <motion.a
+                            key={item}
+                            initial={{opacity: 0, y: -10}}
+                            animate={{opacity: 1, y: 0}}
+                            transition={{duration: 0.5, delay: 0.3 + index * 0.1}}
+                            whileHover={{color: "#8b45ff"}}
+                            href={item === 'Discord' ? "https://discord.gg/J3XUnGaZjQ" : `#${item.toLowerCase()}`}
+                            target={item === 'Discord' ? "_blank" : undefined}
+                            className="text-neutral-300 hover:text-violet-400 transition-colors duration-300"
+                        >
+                            {item}
+                        </motion.a>
+                    ))}
                 </div>
-                <motion.button
-                    onClick={handleDownload}
-                    disabled={loading}
-                    className={`bg-violet-600 hover:bg-violet-500 text-white px-4 lg:px-6 py-2 rounded-md transition-all duration-300 shadow-lg hover:shadow-violet-500/25 disabled:opacity-50 disabled:cursor-not-allowed transform ${
-                        showNavButton ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0 pointer-events-none'
-                    }`}
-                >
-                    Download
-                </motion.button>
+                <AnimatePresence>
+                    {showNavButton && (
+                        <motion.button
+                            initial={{opacity: 0, y: -20}}
+                            animate={{opacity: 1, y: 0}}
+                            exit={{opacity: 0, y: -20}}
+                            transition={{duration: 0.3}}
+                            onClick={handleDownload}
+                            disabled={loading}
+                            className="bg-violet-600 hover:bg-violet-500 text-white px-4 lg:px-6 py-2 rounded-md transition-all duration-300 shadow-lg hover:shadow-violet-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            Download
+                        </motion.button>
+                    )}
+                </AnimatePresence>
             </motion.nav>
 
             <section
@@ -158,42 +168,46 @@ export default function Home() {
                     className="absolute inset-0 bg-gradient-to-r from-violet-600/20 via-indigo-600/20 to-violet-600/20 opacity-30"></div>
 
                 <motion.div
+                    initial={{opacity: 0}}
                     animate={{
+                        opacity: 1,
                         y: [-10, 10, -10],
                         rotate: [0, 5, -5, 0],
                     }}
                     transition={{
-                        duration: 6,
-                        repeat: Infinity,
-                        ease: "easeInOut"
+                        opacity: {duration: 0.5},
+                        y: {duration: 6, repeat: Infinity, ease: "easeInOut"},
+                        rotate: {duration: 6, repeat: Infinity, ease: "easeInOut"}
                     }}
                     className="absolute top-10 right-10 w-64 h-64 lg:w-96 lg:h-96 bg-violet-500/20 rounded-full blur-3xl"
                 ></motion.div>
 
                 <motion.div
+                    initial={{opacity: 0}}
                     animate={{
+                        opacity: 1,
                         y: [10, -10, 10],
                         rotate: [0, -5, 5, 0],
                     }}
                     transition={{
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "easeInOut"
+                        opacity: {duration: 0.5, delay: 0.2},
+                        y: {duration: 8, repeat: Infinity, ease: "easeInOut"},
+                        rotate: {duration: 8, repeat: Infinity, ease: "easeInOut"}
                     }}
                     className="absolute bottom-10 left-10 w-64 h-64 lg:w-96 lg:h-96 bg-violet-500/15 rounded-full blur-3xl"
                 ></motion.div>
 
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center w-full relative z-10">
                     <motion.div
-                        initial={{opacity: 0}}
-                        animate={{opacity: 1}}
-                        transition={{duration: 1, staggerChildren: 0.3}}
+                        initial={{opacity: 0, x: -50}}
+                        animate={{opacity: 1, x: 0}}
+                        transition={{duration: 1, ease: "easeOut"}}
                         className="w-full lg:w-1/2 max-w-2xl text-center lg:text-left lg:pr-8"
                     >
                         <motion.h1
                             initial={{opacity: 0, y: 30}}
                             animate={{opacity: 1, y: 0}}
-                            transition={{duration: 0.8, ease: "easeOut"}}
+                            transition={{duration: 0.8, ease: "easeOut", delay: 0.2}}
                             className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 leading-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                         >
                             Dominate the game<br/>
@@ -206,7 +220,7 @@ export default function Home() {
                         <motion.p
                             initial={{opacity: 0, y: 30}}
                             animate={{opacity: 1, y: 0}}
-                            transition={{duration: 0.8, ease: "easeOut", delay: 0.2}}
+                            transition={{duration: 0.8, ease: "easeOut", delay: 0.4}}
                             className="text-lg md:text-md lg:text-md text-neutral-300 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
                         >
                             A premium-yet free-Minecraft utility mod built for the best possible experience.
@@ -218,46 +232,51 @@ export default function Home() {
                         <motion.div
                             initial={{opacity: 0, y: 30}}
                             animate={{opacity: 1, y: 0}}
-                            transition={{duration: 0.8, ease: "easeOut", delay: 0.4}}
+                            transition={{duration: 0.8, ease: "easeOut", delay: 0.6}}
                             className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
                         >
                             <motion.button
                                 onClick={handleDownload}
-                                whileHover={{background: "#dac1ed"}}
+                                whileHover={{scale: 1.05, background: "#dac1ed"}}
+                                whileTap={{scale: 0.95}}
                                 disabled={loading}
-                                className="bg-white px-6 py-2 text-black rounded-full font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="hero-download-button bg-white px-6 py-2 text-black rounded-full font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {loading ? 'Loading...' : 'Download'}
                             </motion.button>
 
                             <motion.button
                                 onClick={handleLearnMore}
-                                whileHover={{borderColor: "#8b45ff", color: "#8b45ff"}}
+                                whileHover={{scale: 1.05, borderColor: "#8b45ff", color: "#8b45ff"}}
+                                whileTap={{scale: 0.95}}
                                 className="border-2 border-neutral-600 text-neutral-300 px-6 py-2 rounded-full font-medium text-sm hover:bg-neutral-800/50 transition-all duration-300"
                             >
                                 Learn more
                             </motion.button>
                         </motion.div>
 
-                        {latestRelease && !loading && (
-                            <motion.p
-                                initial={{opacity: 0}}
-                                animate={{opacity: 1}}
-                                transition={{duration: 0.8, delay: 0.6}}
-                                className="text-sm text-neutral-400 mt-6 text-center lg:text-left"
-                            >
-                                Latest Release: {getVersionText() || getFormattedVersion()} •
-                                <a href={latestRelease.html_url} target="_blank" rel="noopener noreferrer"
-                                   className="text-violet-400 hover:text-violet-300 ml-1">
-                                    View on GitHub
-                                </a>
-                            </motion.p>
-                        )}
+                        <AnimatePresence>
+                            {latestRelease && !loading && (
+                                <motion.p
+                                    initial={{opacity: 0, y: 20}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -20}}
+                                    transition={{duration: 0.6, delay: 0.8}}
+                                    className="text-sm text-neutral-400 mt-6 text-center lg:text-left"
+                                >
+                                    Latest Release: {getVersionText() || getFormattedVersion()} •
+                                    <a href={latestRelease.html_url} target="_blank" rel="noopener noreferrer"
+                                       className="text-violet-400 hover:text-violet-300 ml-1">
+                                        View on GitHub
+                                    </a>
+                                </motion.p>
+                            )}
+                        </AnimatePresence>
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, scale: 0.8, x: 50 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
                         transition={{ duration: 1.2, ease: "easeOut", delay: 0.8 }}
                         className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-end items-center lg:pl-8"
                     >
@@ -277,7 +296,7 @@ export default function Home() {
                 initial={{opacity: 0, y: 100}}
                 whileInView={{opacity: 1, y: 0}}
                 transition={{duration: 0.8, ease: "easeOut"}}
-                viewport={{once: true}}
+                viewport={{once: true, amount: 0.2}}
                 id="features"
                 className="py-20 px-6 md:px-12 bg-black w-full"
             >
@@ -286,7 +305,7 @@ export default function Home() {
                         initial={{opacity: 0, y: 50}}
                         whileInView={{opacity: 1, y: 0}}
                         transition={{duration: 0.6, delay: 0.2}}
-                        viewport={{once: true}}
+                        viewport={{once: true, amount: 0.5}}
                         className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
                     >
                         Why choose <span
@@ -297,7 +316,7 @@ export default function Home() {
                         initial={{opacity: 0, y: 30}}
                         whileInView={{opacity: 1, y: 0}}
                         transition={{duration: 0.6, delay: 0.4}}
-                        viewport={{once: true}}
+                        viewport={{once: true, amount: 0.5}}
                         className="text-xl text-neutral-400 mb-16 max-w-3xl mx-auto"
                     >
                         With our abundant set of features, you&apos;ll never want to use another client.
@@ -325,14 +344,18 @@ export default function Home() {
                                 initial={{opacity: 0, y: 50}}
                                 whileInView={{opacity: 1, y: 0}}
                                 transition={{duration: 0.6, delay: 0.2 * index}}
-                                viewport={{once: true}}
-                                whileHover={{scale: 1.05}}
+                                viewport={{once: true, amount: 0.3}}
+                                whileHover={{scale: 1.05, y: -10}}
                                 className="text-center p-6 rounded-lg border border-neutral-800/50 bg-neutral-900/20 backdrop-blur-sm shadow-lg hover:shadow-violet-500/20 transition-all duration-300 hover:border-violet-500/30"
                                 style={{
                                     boxShadow: '0 0 20px rgba(139, 69, 255, 0.1), inset 0 0 20px rgba(139, 69, 255, 0.05)'
                                 }}
                             >
-                                <div
+                                <motion.div
+                                    initial={{scale: 0}}
+                                    whileInView={{scale: 1}}
+                                    transition={{duration: 0.5, delay: 0.3 + 0.2 * index}}
+                                    viewport={{once: true}}
                                     className="w-16 h-16 bg-violet-600 rounded-lg mx-auto mb-6 flex items-center justify-center shadow-lg"
                                     style={{
                                         boxShadow: '0 0 25px rgba(139, 69, 255, 0.4)'
@@ -343,7 +366,7 @@ export default function Home() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                               d={feature.icon}/>
                                     </svg>
-                                </div>
+                                </motion.div>
                                 <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">{feature.title}</h3>
                                 <p className="text-neutral-400">
                                     <span
@@ -360,7 +383,7 @@ export default function Home() {
                 initial={{opacity: 0, y: 100}}
                 whileInView={{opacity: 1, y: 0}}
                 transition={{duration: 0.8, ease: "easeOut"}}
-                viewport={{once: true}}
+                viewport={{once: true, amount: 0.2}}
                 id="download"
                 className="py-20 px-6 md:px-12 bg-black w-full"
             >
@@ -369,7 +392,7 @@ export default function Home() {
                         initial={{opacity: 0, y: 50}}
                         whileInView={{opacity: 1, y: 0}}
                         transition={{duration: 0.6, delay: 0.2}}
-                        viewport={{once: true}}
+                        viewport={{once: true, amount: 0.5}}
                         className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
                     >
                         Ready to Enhance Your Experience?
@@ -379,7 +402,7 @@ export default function Home() {
                         initial={{opacity: 0, y: 30}}
                         whileInView={{opacity: 1, y: 0}}
                         transition={{duration: 0.6, delay: 0.4}}
-                        viewport={{once: true}}
+                        viewport={{once: true, amount: 0.5}}
                         className="text-xl text-neutral-300 mb-8 max-w-2xl mx-auto"
                     >
                         Download <span
@@ -391,19 +414,22 @@ export default function Home() {
                         initial={{opacity: 0, y: 30}}
                         whileInView={{opacity: 1, y: 0}}
                         transition={{duration: 0.6, delay: 0.6}}
-                        viewport={{once: true}}
+                        viewport={{once: true, amount: 0.5}}
                         className="flex flex-col sm:flex-row gap-4 justify-center"
                     >
                         <motion.button
                             onClick={handleDownload}
                             disabled={loading}
+                            whileHover={{scale: 1.05}}
+                            whileTap={{scale: 0.95}}
                             className="bg-violet-600 hover:bg-violet-500 text-white px-12 py-4 rounded-md font-semibold text-xl transition-all duration-300 shadow-lg hover:shadow-violet-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {getVersionText()}
                         </motion.button>
 
                         <motion.button
-                            whileHover={{borderColor: "#8b45ff", color: "#8b45ff"}}
+                            whileHover={{scale: 1.05, borderColor: "#8b45ff", color: "#8b45ff"}}
+                            whileTap={{scale: 0.95}}
                             onClick={() => latestRelease && window.open(latestRelease.html_url, '_blank')}
                             className="border-2 border-neutral-600 text-neutral-300 px-12 py-4 rounded-md font-semibold text-xl hover:bg-neutral-800/50 transition-all duration-300"
                         >
@@ -415,7 +441,7 @@ export default function Home() {
                         initial={{opacity: 0}}
                         whileInView={{opacity: 1}}
                         transition={{duration: 0.6, delay: 0.8}}
-                        viewport={{once: true}}
+                        viewport={{once: true, amount: 0.5}}
                         className="text-sm text-neutral-400 mt-6"
                     >
                         Supports Minecraft 1.21.x • Windows, macOS, Linux
@@ -430,7 +456,7 @@ export default function Home() {
                 initial={{opacity: 0, y: 50}}
                 whileInView={{opacity: 1, y: 0}}
                 transition={{duration: 0.8, ease: "easeOut"}}
-                viewport={{once: true}}
+                viewport={{once: true, amount: 0.1}}
                 className="py-12 px-6 md:px-12 border-t border-neutral-800 bg-black w-full"
             >
                 <div className="max-w-6xl mx-auto">
@@ -442,9 +468,15 @@ export default function Home() {
                             viewport={{once: true}}
                         >
                             <div className="flex items-center space-x-2 mb-4">
-                                <h3 className="text-xl lg:text-2xl font-bold text-violet-400">
+                                <motion.h3 
+                                    initial={{opacity: 0, scale: 0.8}}
+                                    whileInView={{opacity: 1, scale: 1}}
+                                    transition={{duration: 0.5, delay: 0.3}}
+                                    viewport={{once: true}}
+                                    className="text-xl lg:text-2xl font-bold text-violet-400"
+                                >
                                     <span className="drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span> Client
-                                </h3>
+                                </motion.h3>
                             </div>
                             <p className="text-neutral-400">The ultimate Minecraft utility client for enhanced
                                 gameplay.</p>
@@ -494,10 +526,16 @@ export default function Home() {
                                 <h4 className="text-lg font-semibold text-white mb-4">{section.title}</h4>
                                 <ul className="space-y-2 text-neutral-400">
                                     {section.links.map((link, linkIndex) => (
-                                        <li key={linkIndex}>
+                                        <motion.li 
+                                            key={linkIndex}
+                                            initial={{opacity: 0, x: -20}}
+                                            whileInView={{opacity: 1, x: 0}}
+                                            transition={{duration: 0.4, delay: 0.3 + linkIndex * 0.1}}
+                                            viewport={{once: true}}
+                                        >
                                             {link.action ? (
                                                 <motion.button
-                                                    whileHover={{color: "#8b45ff"}}
+                                                    whileHover={{color: "#8b45ff", x: 5}}
                                                     onClick={link.action}
                                                     className="hover:text-violet-400 transition-colors"
                                                 >
@@ -505,7 +543,7 @@ export default function Home() {
                                                 </motion.button>
                                             ) : (
                                                 <motion.a
-                                                    whileHover={{color: "#8b45ff"}}
+                                                    whileHover={{color: "#8b45ff", x: 5}}
                                                     href={link.href}
                                                     target={link.external ? "_blank" : undefined}
                                                     rel={link.external ? "noopener noreferrer" : undefined}
@@ -514,7 +552,7 @@ export default function Home() {
                                                     {link.text}
                                                 </motion.a>
                                             )}
-                                        </li>
+                                        </motion.li>
                                     ))}
                                 </ul>
                             </motion.div>
