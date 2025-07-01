@@ -187,7 +187,7 @@ export default function Home() {
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     transition={{duration: 1, staggerChildren: 0.3}}
-                    className="w-full max-w-4xl mx-auto relative z-10 text-center lg:text-left"
+                    className="w-full lg:w-1/2 max-w-2xl relative z-10 text-center lg:text-left lg:pr-8"
                 >
                     <motion.h1
                         initial={{opacity: 0, y: 30}}
@@ -252,6 +252,22 @@ export default function Home() {
                             </a>
                         </motion.p>
                     )}
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.2, ease: "easeOut", delay: 0.8 }}
+                    className="hidden lg:flex w-full justify-center lg:justify-end items-center relative z-10 lg:pl-8"
+                >
+                    <motion.img
+                        src="/clickgui.png"
+                        alt="Click GUI"
+                        className="w-[64rem] h-auto"
+                        style={{
+                            transform: 'perspective(1200px) rotateY(-10deg) rotateX(15deg)'
+                        }}
+                    />
                 </motion.div>
             </section>
 
