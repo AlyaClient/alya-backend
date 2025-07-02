@@ -243,7 +243,7 @@ export default function Home() {
                             A premium-yet free-Minecraft utility mod built for the best possible experience.
                             <span
                                 className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]"> Rye</span> currently
-                            supports Fabric for Minecraft 1.21.6, providing a smooth and intuitive user experience.
+                            supports Fabric for Minecraft 1.21.7, providing a smooth and intuitive user experience.
                         </motion.p>
 
                         <motion.div
@@ -461,7 +461,7 @@ export default function Home() {
                         viewport={{once: true, amount: 0.5}}
                         className="text-sm text-neutral-400 mt-6"
                     >
-                        Supports Minecraft 1.21.x • Windows, macOS, Linux
+                        Supports Minecraft 1.21.7 • Windows, macOS, Linux
                         {latestRelease && (
                             <span className="block mt-2">Current Version: {getFormattedVersion()}</span>
                         )}
