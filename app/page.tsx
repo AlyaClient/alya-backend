@@ -60,6 +60,7 @@ export default function Home() {
         };
     }, []);
 
+
     const formatVersionNumber = (version: string): string => {
         const numbers = version.replace(/\D/g, '');
 
@@ -71,7 +72,7 @@ export default function Home() {
         const minor = Math.floor((buildNumber % 500) / 50);
         const patch = buildNumber % 50;
 
-        const formattedVersion = `${major}.${minor}.${patch}`;
+        const formattedVersion = `${major}.${minor}.${patch.toString().padStart(2, '0')}`;
 
         const prefix = version.replace(/[\d.]/g, '');
         return prefix + formattedVersion;
