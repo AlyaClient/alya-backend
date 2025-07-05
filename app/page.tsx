@@ -108,7 +108,7 @@ export default function Home() {
         return formatVersionNumber(latestRelease.tag_name);
     };
 
-    if (!mounted) {
+    if(!mounted) {
         return null;
     }
 
@@ -130,7 +130,7 @@ export default function Home() {
                         <span className="drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span> Client
                     </motion.span>
                 </div>
-                
+
                 <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-6 lg:space-x-8">
                     {['Features', 'Download', 'Discord'].map((item, index) => (
                         <motion.a
@@ -159,7 +159,7 @@ export default function Home() {
                         </motion.a>
                     ))}
                 </div>
-                
+
                 <AnimatePresence>
                     {showNavButton && (
                         <motion.button
@@ -215,7 +215,8 @@ export default function Home() {
                     className="absolute bottom-10 left-10 w-64 h-64 lg:w-96 lg:h-96 bg-violet-500/15 rounded-full blur-3xl"
                 ></motion.div>
 
-                <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center w-full relative z-10">
+                <div
+                    className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center w-full relative z-10">
                     <motion.div
                         initial={{opacity: 0, x: -50}}
                         animate={{opacity: 1, x: 0}}
@@ -293,9 +294,9 @@ export default function Home() {
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8, x: 50 }}
-                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.8 }}
+                        initial={{opacity: 0, scale: 0.8, x: 50}}
+                        animate={{opacity: 1, scale: 1, x: 0}}
+                        transition={{duration: 1.2, ease: "easeOut", delay: 0.8}}
                         className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-end items-center lg:pl-8"
                     >
                         <motion.img
@@ -486,7 +487,7 @@ export default function Home() {
                             viewport={{once: true}}
                         >
                             <div className="flex items-center space-x-2 mb-4">
-                                <motion.h3 
+                                <motion.h3
                                     initial={{opacity: 0, scale: 0.8}}
                                     whileInView={{opacity: 1, scale: 1}}
                                     transition={{duration: 0.5, delay: 0.3}}
@@ -519,7 +520,7 @@ export default function Home() {
                                     {text: "Discord", href: "https://discord.gg/J3XUnGaZjQ", external: true},
                                     {
                                         text: "Bug Reports",
-                                        href: "https://github.com/RyeClient/rry-v1/issues",
+                                        href: "https://github.com/RyeClient/rye-v1/issues",
                                         external: true
                                     }
                                 ]
@@ -544,7 +545,7 @@ export default function Home() {
                                 <h4 className="text-lg font-semibold text-white mb-4">{section.title}</h4>
                                 <ul className="space-y-2 text-neutral-400">
                                     {section.links.map((link, linkIndex) => (
-                                        <motion.li 
+                                        <motion.li
                                             key={linkIndex}
                                             initial={{opacity: 0, x: -20}}
                                             whileInView={{opacity: 1, x: 0}}
