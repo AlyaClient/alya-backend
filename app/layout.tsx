@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Home | Rye Client",
-  description: "Rye Client Homepage",
+  title: "Home | Alya Client",
+  description: "Alya Client Homepage",
 };
 
 export default function RootLayout({

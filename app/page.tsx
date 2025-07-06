@@ -26,7 +26,7 @@ export default function Home() {
     useEffect(() => {
         const fetchLatestRelease = async() => {
             try {
-                const response = await fetch('https://api.github.com/repos/RyeClient/rye-v1/releases');
+                const response = await fetch('https://api.github.com/repos/AlyaClient/alya-beta/releases');
 
                 const releases = await response.json();
                 if(releases.length > 0) {
@@ -86,7 +86,7 @@ export default function Home() {
         } else if(latestRelease?.html_url) {
             window.open(latestRelease.html_url, '_blank');
         } else {
-            window.open('https://github.com/RyeClient/rye-v1/releases/latest', '_blank');
+            window.open('https://github.com/AlyaClient/alya-beta/releases/latest', '_blank');
         }
     };
 
@@ -127,7 +127,7 @@ export default function Home() {
                         transition={{duration: 0.6, delay: 0.2}}
                         className="text-violet-400"
                     >
-                        <span className="drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span> Client
+                        <span className="drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Alya</span> Client
                     </motion.span>
                 </div>
 
@@ -231,7 +231,7 @@ export default function Home() {
                         >
                             Dominate the game<br/>
                             with <span
-                            className="text-violet-400">Rye</span>{" "}
+                            className="text-violet-400">Alya</span>{" "}
                             <span
                                 className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent">Client</span>.
                         </motion.h1>
@@ -244,7 +244,7 @@ export default function Home() {
                         >
                             A premium-yet free-Minecraft utility mod built for the best possible experience.
                             <span
-                                className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]"> Rye</span> currently
+                                className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]"> Alya</span> currently
                             supports Fabric for Minecraft 1.21.7, providing a smooth and intuitive user experience.
                         </motion.p>
 
@@ -302,7 +302,7 @@ export default function Home() {
                         <motion.img
                             src="/clickgui.png"
                             alt="Click GUI"
-                            className="w-[64rem] h-auto"
+                            className="w-[96em] h-auto"
                             style={{
                                 transform: 'perspective(1200px) rotateY(-10deg) rotateX(15deg)'
                             }}
@@ -328,7 +328,7 @@ export default function Home() {
                         className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
                     >
                         Why choose <span
-                        className="text-violet-400">Rye</span>?
+                        className="text-violet-400">Alya</span>?
                     </motion.h2>
 
                     <motion.p
@@ -389,7 +389,7 @@ export default function Home() {
                                 <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">{feature.title}</h3>
                                 <p className="text-neutral-400">
                                     <span
-                                        className="text-violet-400 drop-shadow-[0_0_8px_rgba(139,69,255,0.8)]">Rye</span>
+                                        className="text-violet-400 drop-shadow-[0_0_8px_rgba(139,69,255,0.8)]">Alya</span>
                                     {feature.description}
                                 </p>
                             </motion.div>
@@ -425,7 +425,7 @@ export default function Home() {
                         className="text-xl text-neutral-300 mb-8 max-w-2xl mx-auto"
                     >
                         Download <span
-                        className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye Client</span> now and
+                        className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Alya Client</span> now and
                         experience Minecraft like never before. Compatible with the latest versions.
                     </motion.p>
 
@@ -494,7 +494,7 @@ export default function Home() {
                                     viewport={{once: true}}
                                     className="text-xl lg:text-2xl font-bold text-violet-400"
                                 >
-                                    <span className="drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye</span> Client
+                                    <span className="drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Alya</span> Client
                                 </motion.h3>
                             </div>
                             <p className="text-neutral-400">The ultimate Minecraft utility client for enhanced
@@ -509,7 +509,7 @@ export default function Home() {
                                     {text: "Features", href: "#features"},
                                     {
                                         text: "Changelog",
-                                        href: "https://github.com/RyeClient/rye-v1/commits/main",
+                                        href: "https://github.com/AlyaClient/alya-beta/commits/main",
                                         external: true
                                     }
                                 ]
@@ -520,7 +520,7 @@ export default function Home() {
                                     {text: "Discord", href: "https://discord.gg/J3XUnGaZjQ", external: true},
                                     {
                                         text: "Bug Reports",
-                                        href: "https://github.com/RyeClient/rye-v1/issues",
+                                        href: "https://github.com/AlyaClient/alya-beta/issues",
                                         external: true
                                     }
                                 ]
@@ -530,7 +530,7 @@ export default function Home() {
                                 links: [
                                     {
                                         text: "Terms of Use",
-                                        href: "https://raw.githubusercontent.com/RyeClient/rye-v1/refs/heads/main/LICENSE"
+                                        href: "https://raw.githubusercontent.com/AlyaClient/alya-beta/refs/heads/main/LICENSE"
                                     }
                                 ]
                             }
@@ -586,7 +586,7 @@ export default function Home() {
                         className="border-t border-neutral-800 mt-8 pt-8 text-center text-neutral-400"
                     >
                         <p>&copy; {new Date().getFullYear()} <span
-                            className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Rye Client</span>.
+                            className="text-violet-400 drop-shadow-[0_0_5px_rgba(139,69,255,0.6)]">Alya Client</span>.
                             Not affiliated with Mojang Studios or Microsoft.</p>
                     </motion.div>
                 </div>
